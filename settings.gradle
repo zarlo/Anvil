@@ -22,3 +22,7 @@ include ':anvil-spigot'
 include ':anvil-sponge'
 
 include ':anvil-velocity'
+include 'anvil-nukkit'
+include 'anvil-core:anvil-core-nukkit'
+findProject(':anvil-core:anvil-core-nukkit')?.name = 'anvil-core-nukkit'
+

@@ -1,0 +1,6 @@
+name: Anvil
+main: org.anvilpowered.anvil.core.nukkit.plugin.AnvilCoreNukkit
+
+version: "1.0.0-SNAPSHOT"
+author: "STG_Allen, Cableguy20"
+api: ["1.0.0"]
