@@ -70,4 +70,27 @@ public interface ContextualDataService {
      * @return chat color of group or player
      */
     Optional<String> getChatColor(String name);
+
+    /**
+     * @param name player name
+     */
+    void addPlayerToCache(String name);
+
+    /**
+     *
+     * @param userUUID {@link UUID} of user
+     */
+    void addPlayerToCache(UUID userUUID);
+
+    /**
+     *
+     * @param name player name
+     */
+    void removePlayerFromCache(String name);
+
+    /**
+     *
+     * @param userUUID {@link UUID} of user
+     */
+    void removePlayerFromCache(UUID userUUID);
 }

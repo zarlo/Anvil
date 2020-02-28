@@ -18,3 +18,5 @@ include ':anvil-md5'
 include ':anvil-spigot'
 include ':anvil-sponge'
 include ':anvil-velocity'
+include 'anvil-luckperms'
+
