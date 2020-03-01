@@ -17,9 +17,6 @@ public class SpongeTaskService implements TaskService {
     @Inject
     PluginContainer pluginContainer;
 
-    @Inject
-    Task.Builder builder;
-
     @Override
     public void stopAll() {
         Sponge.getScheduler().getScheduledTasks().clear();
@@ -32,14 +29,14 @@ public class SpongeTaskService implements TaskService {
 
     @Override
     public SpongeTaskBuilder builder() {
-        return new SpongeTaskBuilder(builder);
+        return new SpongeTaskBuilder();
     }
 
     protected class SpongeTaskBuilder implements Builder {
         private final Task.Builder builder;
 
-        protected SpongeTaskBuilder(Task.Builder builder) {
-            this.builder = builder;
+        public SpongeTaskBuilder() {
+            builder = Task.builder();
         }
 
         @Override
