@@ -19,6 +19,7 @@
 package org.anvilpowered.anvil.api.util;
 
 import java.time.Duration;
+import java.time.Instant;
 
 public interface TaskService {
 
@@ -39,6 +40,8 @@ public interface TaskService {
         Builder interval(Duration duration);
 
         Builder interval(int ticks);
+
+        Builder startAtUtc(Instant instantUtc);
 
         Builder executor(Runnable runnable);
 
