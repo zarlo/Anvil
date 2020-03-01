@@ -16,7 +16,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Singleton
-public class LuckPermsService<TPlayer> implements ContextualDataService {
+public class LuckPermsContextualDataService<TPlayer> implements ContextualDataService {
 
     @Inject
     private LuckPerms luckPerms;
