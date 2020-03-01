@@ -15,24 +15,27 @@ import java.util.concurrent.TimeUnit;
 public class SpongeTaskService implements TaskService {
 
     @Inject
-    PluginContainer pluginContainer;
+    protected PluginContainer pluginContainer;
 
     @Override
     public void stopAll() {
-        Sponge.getScheduler().getScheduledTasks().clear();
+        Sponge.getScheduler().getScheduledTasks(pluginContainer)
+            .forEach(Task::cancel);
     }
 
     @Override
     public void stop(String name) {
-        Sponge.getScheduler().getTasksByName(name).clear();
+        Sponge.getScheduler().getTasksByName(name)
+            .forEach(Task::cancel);
     }
 
     @Override
-    public SpongeTaskBuilder builder() {
+    public Builder builder() {
         return new SpongeTaskBuilder();
     }
 
     protected class SpongeTaskBuilder implements Builder {
+
         private final Task.Builder builder;
 
         public SpongeTaskBuilder() {
@@ -71,7 +74,8 @@ public class SpongeTaskService implements TaskService {
 
         @Override
         public Builder startAtUtc(Instant instantUtc) {
-            builder.delay(Duration.between(OffsetDateTime.now(ZoneOffset.UTC).toInstant(), instantUtc).getSeconds(), TimeUnit.SECONDS);
+            builder.delay(Duration.between(OffsetDateTime.now(ZoneOffset.UTC).toInstant(),
+                instantUtc).getSeconds(), TimeUnit.SECONDS);
             return this;
         }
 
@@ -84,7 +88,7 @@ public class SpongeTaskService implements TaskService {
         @Override
         public Builder name(String name) {
             builder.name(name);
-            return null;
+            return this;
         }
 
         @Override

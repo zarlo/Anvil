@@ -23,8 +23,15 @@ import java.time.Instant;
 
 public interface TaskService {
 
+    /**
+     * Stop all tasks belonging to this plugin
+     */
     void stopAll();
 
+    /**
+     * Stop all tasks that match the provided name
+     * @param name {@link String} name of task
+     */
     void stop(String name);
 
     Builder builder();
