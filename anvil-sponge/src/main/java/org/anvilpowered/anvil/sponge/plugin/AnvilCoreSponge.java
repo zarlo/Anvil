@@ -21,6 +21,7 @@ package org.anvilpowered.anvil.sponge.plugin;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import org.anvilpowered.anvil.api.AnvilImpl;
+import org.anvilpowered.anvil.api.data.key.Keys;
 import org.anvilpowered.anvil.common.plugin.AnvilCore;
 import org.anvilpowered.anvil.common.plugin.AnvilCorePluginInfo;
 import org.anvilpowered.anvil.sponge.listener.SpongePlayerListener;
@@ -51,6 +52,8 @@ public class AnvilCoreSponge extends AnvilCore<PluginContainer> {
     @Listener(order = Order.EARLY)
     public void onInit(GameInitializationEvent event) {
         AnvilImpl.completeInitialization(new ApiSpongeModule());
-        Sponge.getEventManager().registerListeners(this, environment.getInjector().getInstance(SpongePlayerListener.class));
+        if(!getRegistry().getOrDefault(Keys.PROXY_MODE)) {
+            Sponge.getEventManager().registerListeners(this, environment.getInjector().getInstance(SpongePlayerListener.class));
+        }
     }
 }

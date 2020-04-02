@@ -102,6 +102,7 @@ public class BaseConfigurationService extends BaseRegistry implements Configurat
         setName(Keys.MONGODB_USE_AUTH, "datastore.mongodb.useAuth");
         setName(Keys.MONGODB_USE_SRV, "datastore.mongodb.useSrv");
         setName(Keys.MONGODB_USE_CONNECTION_STRING, "datastore.mongodb.useConnectionString");
+        setName(Keys.PROXY_MODE, "proxy.mode");
     }
 
     protected void initNodeDescriptionMap() {
@@ -129,6 +130,7 @@ public class BaseConfigurationService extends BaseRegistry implements Configurat
             "\nOnly use this if you know what you are doing!" +
             "\nPlease note that this plugin will inherit both useConnectionString and connectionString from" +
             "\nAnvil if and only if useSharedEnvironment and useSharedCredentials are both true");
+        setDescription(Keys.PROXY_MODE, "\nEnable this if you plan to run your servers on a proxy. \nFailure to do so will cause issues with your database.");
     }
 
     protected <T> void setVerification(Key<T> key,

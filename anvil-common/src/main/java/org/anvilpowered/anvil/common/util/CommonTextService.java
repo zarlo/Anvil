@@ -33,7 +33,7 @@ import java.util.regex.Pattern;
 public abstract class CommonTextService<TString, TCommandSource>
     implements TextService<TString, TCommandSource> {
 
-    private static final int LINE_WIDTH = 91;
+    private static final int LINE_WIDTH = 50;
 
     @Override
     public TString success(String s) {
@@ -115,7 +115,9 @@ public abstract class CommonTextService<TString, TCommandSource>
                 throw new IllegalArgumentException("Padding length must not be greater than width");
             }
             final TString contentsText = of(contents);
+            System.out.println("Width length " + width);
             final int contentsLength = length(contentsText);
+            System.out.println("Content Length " + contentsLength);
             if (width < contentsLength) {
                 throw new IllegalArgumentException("Contents length must not be greater than width");
             }
@@ -411,7 +413,7 @@ public abstract class CommonTextService<TString, TCommandSource>
                     linesAvailable -= lineCount(title);
                 }
                 if (header != null) {
-                    page.appendWithPaddingAround(LINE_WIDTH, ' ', header).append("\n");
+                    page.appendWithPaddingAround(LINE_WIDTH, padding, header).append("\n");
                     linesAvailable -= lineCount(header);
                 } else {
                     page.appendWithPaddingAround(LINE_WIDTH, padding).append("\n");

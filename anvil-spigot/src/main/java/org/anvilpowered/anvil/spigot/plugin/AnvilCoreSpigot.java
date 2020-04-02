@@ -24,6 +24,7 @@ import com.google.inject.Inject;
 import com.google.inject.Injector;
 import org.anvilpowered.anvil.api.AnvilImpl;
 import org.anvilpowered.anvil.api.Environment;
+import org.anvilpowered.anvil.api.data.key.Keys;
 import org.anvilpowered.anvil.api.plugin.Plugin;
 import org.anvilpowered.anvil.common.plugin.AnvilCore;
 import org.anvilpowered.anvil.common.plugin.AnvilCorePluginInfo;
@@ -60,11 +61,13 @@ public class AnvilCoreSpigot extends JavaPlugin implements Plugin<JavaPlugin> {
     @Override
     public void onEnable() {
         AnvilImpl.completeInitialization(new ApiSpigotModule());
-        Bukkit.getPluginManager().registerEvents(
-            inner.getPrimaryEnvironment()
-                .getInjector().getInstance(SpigotPlayerListener.class),
-            this
-        );
+        if(!inner.getPrimaryEnvironment().getRegistry().getOrDefault(Keys.PROXY_MODE)) {
+            Bukkit.getPluginManager().registerEvents(
+                inner.getPrimaryEnvironment()
+                    .getInjector().getInstance(SpigotPlayerListener.class),
+                this
+            );
+        }
     }
 
     @Override

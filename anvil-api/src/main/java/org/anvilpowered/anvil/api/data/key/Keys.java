@@ -86,6 +86,8 @@ public final class Keys {
     };
     public static final Key<Boolean> MONGODB_USE_CONNECTION_STRING = new Key<Boolean>("MONGODB_USE_CONNECTION_STRING", false) {
     };
+    public static final Key<Boolean> PROXY_MODE = new Key<Boolean>("PROXY_MODE", false){
+    };
 
     static {
         registerKey(SERVER_NAME);
@@ -104,5 +106,6 @@ public final class Keys {
         registerKey(MONGODB_AUTH_DB);
         registerKey(MONGODB_USE_AUTH);
         registerKey(MONGODB_USE_SRV);
+        registerKey(PROXY_MODE);
     }
 }
